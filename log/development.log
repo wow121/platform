@@ -1,0 +1,189 @@
+  [1m[36m (14.6ms)[0m  [1mCREATE TABLE `schema_migrations` (`version` varchar(255) NOT NULL) ENGINE=InnoDB[0m
+  [1m[35m (24.6ms)[0m  CREATE UNIQUE INDEX `unique_schema_migrations` ON `schema_migrations` (`version`) 
+  [1m[36mActiveRecord::SchemaMigration Load (1.0ms)[0m  [1mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+Migrating to CreateStudents (20140114232714)
+  [1m[35m (10.0ms)[0m  CREATE TABLE `students` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `name` varchar(255), `password` varchar(255), `number` varchar(255), `grade` varchar(255), `token` varchar(255), `myclass` varchar(255), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (2.3ms)[0m  INSERT INTO `schema_migrations` (`version`) VALUES ('20140114232714')
+  [1m[36m (3.2ms)[0m  [1mCOMMIT[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.3ms)[0m  SELECT `schema_migrations`.* FROM `schema_migrations`
+
+
+Started GET "/web/register" for 127.0.0.1 at 2014-01-15 08:04:25 +0800
+Processing by WebController#register as HTML
+Completed 500 Internal Server Error in 50ms
+
+TypeError (can't convert nil into String):
+  app/controllers/web_controller.rb:9:in `digest'
+  app/controllers/web_controller.rb:9:in `hexdigest'
+  app/controllers/web_controller.rb:9:in `register'
+
+
+  Rendered /usr/local/rvm/gems/ruby-1.9.3-p484/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/rescues/_source.erb (1.1ms)
+  Rendered /usr/local/rvm/gems/ruby-1.9.3-p484/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.7ms)
+  Rendered /usr/local/rvm/gems/ruby-1.9.3-p484/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.5ms)
+  Rendered /usr/local/rvm/gems/ruby-1.9.3-p484/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (24.0ms)
+
+
+Started GET "/web/register?name=%E5%92%B8%E7%9D%BF&password=[FILTERED]&number=2010912021&grade=2010&myclass=%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B%E4%B8%80%E7%8F%AD" for 127.0.0.1 at 2014-01-15 08:06:33 +0800
+Processing by WebController#register as HTML
+  Parameters: {"name"=>"咸睿", "password"=>"[FILTERED]", "number"=>"2010912021", "grade"=>"2010", "myclass"=>"软件工程一班"}
+  [1m[36mStudent Load (8.1ms)[0m  [1mSELECT `students`.* FROM `students` WHERE `students`.`name` = '咸睿' ORDER BY `students`.`id` ASC LIMIT 1[0m
+Mysql2::Error: Illegal mix of collations (latin1_swedish_ci,IMPLICIT) and (utf8_general_ci,COERCIBLE) for operation '=': SELECT  `students`.* FROM `students`  WHERE `students`.`name` = '咸睿'  ORDER BY `students`.`id` ASC LIMIT 1
+Completed 500 Internal Server Error in 29ms
+
+ActiveRecord::StatementInvalid (Mysql2::Error: Illegal mix of collations (latin1_swedish_ci,IMPLICIT) and (utf8_general_ci,COERCIBLE) for operation '=': SELECT  `students`.* FROM `students`  WHERE `students`.`name` = '咸睿'  ORDER BY `students`.`id` ASC LIMIT 1):
+  app/controllers/web_controller.rb:12:in `register'
+
+
+  Rendered /usr/local/rvm/gems/ruby-1.9.3-p484/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/rescues/_source.erb (1.0ms)
+  Rendered /usr/local/rvm/gems/ruby-1.9.3-p484/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.7ms)
+  Rendered /usr/local/rvm/gems/ruby-1.9.3-p484/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.4ms)
+  Rendered /usr/local/rvm/gems/ruby-1.9.3-p484/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (49.0ms)
+
+
+Started GET "/web/register?name=xianrui&password=[FILTERED]&number=2010912021&grade=2010&myclass=class" for 127.0.0.1 at 2014-01-15 08:09:04 +0800
+Processing by WebController#register as HTML
+  Parameters: {"name"=>"xianrui", "password"=>"[FILTERED]", "number"=>"2010912021", "grade"=>"2010", "myclass"=>"class"}
+  [1m[35mStudent Load (1.5ms)[0m  SELECT `students`.* FROM `students` WHERE `students`.`name` = 'xianrui' ORDER BY `students`.`id` ASC LIMIT 1
+  [1m[36m (0.3ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.7ms)[0m  INSERT INTO `students` (`created_at`, `grade`, `myclass`, `name`, `number`, `password`, `token`, `updated_at`) VALUES ('2014-01-15 00:09:04', '2010', 'class', 'xianrui', '2010912021', '202cb962ac59075b964b07152d234b70', 'me7xJrWurjhd', '2014-01-15 00:09:04')
+  [1m[36m (12.0ms)[0m  [1mCOMMIT[0m
+Completed 200 OK in 54ms (Views: 0.8ms | ActiveRecord: 14.5ms)
+
+
+Started GET "/android/login?number=2010912021&password=[FILTERED]" for 127.0.0.1 at 2014-01-15 08:10:12 +0800
+Processing by AndroidController#login as HTML
+  Parameters: {"number"=>"2010912021", "password"=>"[FILTERED]"}
+Completed 500 Internal Server Error in 6ms
+
+NameError (undefined local variable or method `name' for #<AndroidController:0x007f82d02dfcf8>):
+  app/controllers/android_controller.rb:8:in `login'
+
+
+  Rendered /usr/local/rvm/gems/ruby-1.9.3-p484/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/rescues/_source.erb (1.2ms)
+  Rendered /usr/local/rvm/gems/ruby-1.9.3-p484/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.8ms)
+  Rendered /usr/local/rvm/gems/ruby-1.9.3-p484/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.5ms)
+  Rendered /usr/local/rvm/gems/ruby-1.9.3-p484/gems/actionpack-4.0.2/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (51.3ms)
+
+
+Started GET "/android/login?number=2010912021&password=[FILTERED]" for 127.0.0.1 at 2014-01-15 08:10:44 +0800
+Processing by AndroidController#login as HTML
+  Parameters: {"number"=>"2010912021", "password"=>"[FILTERED]"}
+  [1m[35mStudent Load (12.6ms)[0m  SELECT `students`.* FROM `students` WHERE `students`.`number` = '2010912021' AND `students`.`password` = '4297f44b13955235245b2497399d7a93' ORDER BY `students`.`id` ASC LIMIT 1
+Completed 200 OK in 24ms (Views: 0.3ms | ActiveRecord: 16.5ms)
+
+
+Started GET "/android/login?number=2010912021&password=[FILTERED]" for 127.0.0.1 at 2014-01-15 08:12:46 +0800
+Processing by AndroidController#login as HTML
+  Parameters: {"number"=>"2010912021", "password"=>"[FILTERED]"}
+  [1m[36mStudent Load (0.5ms)[0m  [1mSELECT `students`.* FROM `students` WHERE `students`.`number` = '2010912021' AND `students`.`password` = '4297f44b13955235245b2497399d7a93' ORDER BY `students`.`id` ASC LIMIT 1[0m
+Completed 200 OK in 2ms (Views: 0.2ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/android/login?number=2010912021&password=[FILTERED]" for 127.0.0.1 at 2014-01-15 08:13:26 +0800
+Processing by AndroidController#login as HTML
+  Parameters: {"number"=>"2010912021", "password"=>"[FILTERED]"}
+  [1m[35mStudent Load (0.6ms)[0m  SELECT `students`.* FROM `students` WHERE `students`.`number` = '2010912021' AND `students`.`password` = '202cb962ac59075b964b07152d234b70' ORDER BY `students`.`id` ASC LIMIT 1
+Completed 200 OK in 24ms (Views: 0.4ms | ActiveRecord: 0.6ms)
+  [1m[36mActiveRecord::SchemaMigration Load (0.8ms)[0m  [1mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+Migrating to CreateScores (20140115005412)
+  [1m[35m (15.9ms)[0m  CREATE TABLE `scores` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `name` varchar(255), `number` varchar(255), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (2.6ms)[0m  INSERT INTO `schema_migrations` (`version`) VALUES ('20140115005412')
+  [1m[36m (2.9ms)[0m  [1mCOMMIT[0m
+Migrating to CreateSpecializeds (20140115005704)
+  [1m[35m (12.4ms)[0m  CREATE TABLE `specializeds` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `name` varchar(255), `teacher` varchar(255), `intro` text, `period` varchar(255), `location` varchar(255), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO `schema_migrations` (`version`) VALUES ('20140115005704')
+  [1m[36m (2.3ms)[0m  [1mCOMMIT[0m
+Migrating to CreateMyclasses (20140115012103)
+  [1m[35m (8.2ms)[0m  CREATE TABLE `myclasses` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `name` varchar(255), `count` varchar(255), `teachermanage` varchar(255), `grade` varchar(255), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO `schema_migrations` (`version`) VALUES ('20140115012103')
+  [1m[36m (2.8ms)[0m  [1mCOMMIT[0m
+Migrating to CreateNotices (20140115012315)
+  [1m[35m (17.7ms)[0m  CREATE TABLE `notices` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `title` varchar(255), `content` text, `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB
+  [1m[36m (0.3ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO `schema_migrations` (`version`) VALUES ('20140115012315')
+  [1m[36m (2.7ms)[0m  [1mCOMMIT[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.3ms)[0m  SELECT `schema_migrations`.* FROM `schema_migrations`
+
+
+Started GET "/web/addspecialized?name=test&teacher=test&intro=test&period=40&location=315" for 127.0.0.1 at 2014-01-15 09:59:36 +0800
+Processing by WebController#addspecialized as HTML
+  Parameters: {"name"=>"test", "teacher"=>"test", "intro"=>"test", "period"=>"40", "location"=>"315"}
+  [1m[36mSpecialized Load (0.8ms)[0m  [1mSELECT `specializeds`.* FROM `specializeds` WHERE `specializeds`.`name` = 'test' ORDER BY `specializeds`.`id` ASC LIMIT 1[0m
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36mSQL (0.7ms)[0m  [1mINSERT INTO `specializeds` (`created_at`, `intro`, `location`, `name`, `period`, `teacher`, `updated_at`) VALUES ('2014-01-15 01:59:36', 'test', '315', 'test', '40', 'test', '2014-01-15 01:59:36')[0m
+  [1m[35m (11.5ms)[0m  COMMIT
+Completed 200 OK in 1061ms (Views: 0.8ms | ActiveRecord: 18.2ms)
+
+
+Started GET "/web/addspecialized?name=test&teacher=test&intro=test&period=40&location=315" for 127.0.0.1 at 2014-01-15 10:02:01 +0800
+Processing by WebController#addspecialized as HTML
+  Parameters: {"name"=>"test", "teacher"=>"test", "intro"=>"test", "period"=>"40", "location"=>"315"}
+  [1m[36mSpecialized Load (0.4ms)[0m  [1mSELECT `specializeds`.* FROM `specializeds` WHERE `specializeds`.`name` = 'test' ORDER BY `specializeds`.`id` ASC LIMIT 1[0m
+Completed 200 OK in 20ms (Views: 0.3ms | ActiveRecord: 3.0ms)
+
+
+Started GET "/web/addspecialized?name=test1&teacher=test&intro=test&period=40&location=315" for 127.0.0.1 at 2014-01-15 10:02:07 +0800
+Processing by WebController#addspecialized as HTML
+  Parameters: {"name"=>"test1", "teacher"=>"test", "intro"=>"test", "period"=>"40", "location"=>"315"}
+  [1m[35mSpecialized Load (0.6ms)[0m  SELECT `specializeds`.* FROM `specializeds` WHERE `specializeds`.`name` = 'test1' ORDER BY `specializeds`.`id` ASC LIMIT 1
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO `specializeds` (`created_at`, `intro`, `location`, `name`, `period`, `teacher`, `updated_at`) VALUES ('2014-01-15 02:02:07', 'test', '315', 'test1', '40', 'test', '2014-01-15 02:02:07')
+  [1m[36m (2.7ms)[0m  [1mCOMMIT[0m
+Completed 200 OK in 999ms (Views: 0.7ms | ActiveRecord: 3.7ms)
+
+
+Started GET "/web/addspecialized?name=test2&teacher=test&intro=test&period=40&location=315" for 127.0.0.1 at 2014-01-15 10:03:47 +0800
+Processing by WebController#addspecialized as HTML
+  Parameters: {"name"=>"test2", "teacher"=>"test", "intro"=>"test", "period"=>"40", "location"=>"315"}
+  [1m[35mSpecialized Load (0.3ms)[0m  SELECT `specializeds`.* FROM `specializeds` WHERE `specializeds`.`name` = 'test2' ORDER BY `specializeds`.`id` ASC LIMIT 1
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO `specializeds` (`created_at`, `intro`, `location`, `name`, `period`, `teacher`, `updated_at`) VALUES ('2014-01-15 02:03:47', 'test', '315', 'test2', '40', 'test', '2014-01-15 02:03:47')
+  [1m[36m (3.1ms)[0m  [1mCOMMIT[0m
+true
+
+Completed 200 OK in 934ms (Views: 0.6ms | ActiveRecord: 5.5ms)
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+Migrating to AddTestToSpecializeds (20140115020655)
+  [1m[35m (33.5ms)[0m  ALTER TABLE `specializeds` ADD `test` varchar(255)
+  [1m[36m (0.4ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (4.0ms)[0m  INSERT INTO `schema_migrations` (`version`) VALUES ('20140115020655')
+  [1m[36m (3.2ms)[0m  [1mCOMMIT[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.4ms)[0m  SELECT `schema_migrations`.* FROM `schema_migrations`
+  [1m[36mActiveRecord::SchemaMigration Load (0.7ms)[0m  [1mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+Migrating to AddZxcvToScores (20140115020956)
+  [1m[35m (40.2ms)[0m  ALTER TABLE `scores` ADD `zxcv` varchar(255)
+  [1m[36m (0.5ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (2.5ms)[0m  INSERT INTO `schema_migrations` (`version`) VALUES ('20140115020956')
+  [1m[36m (2.4ms)[0m  [1mCOMMIT[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.3ms)[0m  SELECT `schema_migrations`.* FROM `schema_migrations`
+
+
+Started GET "/web/addspecialized?name=test2&teacher=test&intro=test&period=40&location=315" for 127.0.0.1 at 2014-01-15 10:11:08 +0800
+Processing by WebController#addspecialized as HTML
+  Parameters: {"name"=>"test2", "teacher"=>"test", "intro"=>"test", "period"=>"40", "location"=>"315"}
+  [1m[35mSpecialized Load (0.5ms)[0m  SELECT `specializeds`.* FROM `specializeds` WHERE `specializeds`.`name` = 'test2' ORDER BY `specializeds`.`id` ASC LIMIT 1
+Completed 200 OK in 28ms (Views: 0.5ms | ActiveRecord: 2.3ms)
+
+
+Started GET "/web/addspecialized?name=test3&teacher=test&intro=test&period=40&location=315" for 127.0.0.1 at 2014-01-15 10:11:13 +0800
+Processing by WebController#addspecialized as HTML
+  Parameters: {"name"=>"test3", "teacher"=>"test", "intro"=>"test", "period"=>"40", "location"=>"315"}
+  [1m[36mSpecialized Load (0.5ms)[0m  [1mSELECT `specializeds`.* FROM `specializeds` WHERE `specializeds`.`name` = 'test3' ORDER BY `specializeds`.`id` ASC LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO `specializeds` (`created_at`, `intro`, `location`, `name`, `period`, `teacher`, `updated_at`) VALUES ('2014-01-15 02:11:13', 'test', '315', 'test3', '40', 'test', '2014-01-15 02:11:13')[0m
+  [1m[35m (3.2ms)[0m  COMMIT
+true
+
+Completed 200 OK in 950ms (Views: 0.8ms | ActiveRecord: 4.3ms)
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+Migrating to AddSpecializedToScores (20140115021918)
+  [1m[35m (26.7ms)[0m  ALTER TABLE `scores` ADD `specialized` varchar(255)
+  [1m[36m (0.3ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (31.7ms)[0m  INSERT INTO `schema_migrations` (`version`) VALUES ('20140115021918')
+  [1m[36m (2.9ms)[0m  [1mCOMMIT[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.3ms)[0m  SELECT `schema_migrations`.* FROM `schema_migrations`

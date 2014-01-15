@@ -1,0 +1,22 @@
+development:
+  adapter: mysql2
+  encoding: utf8
+  reconnect: false
+  database: platform_test 
+  pool: 5
+  username: xianrui
+  password: xianrui123
+  host: 203.156.196.150
+  port: 3306
+
+
+production:
+  adapter: mysql2
+  encoding: utf8
+  reconnect: false
+  database: platform_development
+  pool: 5
+  username: xianrui
+  password: xianrui123
+  host: 203.156.196.150
+  port: 3306
