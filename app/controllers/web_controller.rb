@@ -1,5 +1,20 @@
 #encoding = utf-8
 class WebController < ApplicationController
+	
+	 def login
+                name=params[:name]
+                pw=params[:password]
+                password=Digest::MD5.hexdigest(pw)
+                m=Student.where("name"=>name,"password"=>password).first
+                if(m==nil)
+                        str={"status"=>100}
+                else
+                        str={"token"=>m.token,"status"=>200}
+                end
+                render:json=>str
+        end
+
+
 	def register
                 name=params[:name]
                 pw=params[:password]
@@ -9,7 +24,7 @@ class WebController < ApplicationController
                 password=Digest::MD5.hexdigest(pw)
                 code=AndroidHelper.mkrandom(12)
                 str=nil
-                m=Student.where("name"=>name).first
+                m=Student.where("number"=>number).first
                 if(m==nil)
                         user=Student.new
                         user.name=name
@@ -19,9 +34,9 @@ class WebController < ApplicationController
                         user.token=code
                         user.myclass=myclass
                         user.save
-                        str={"token"=>code,"success"=>200}
+                        str={"token"=>code,"status"=>200}
                 else
-                        str={"fail"=>"username is used"}
+                        str={"status"=>100}
                 end
 		render:json=>str
         end
@@ -42,10 +57,51 @@ class WebController < ApplicationController
                         user.period=period
                         user.location=location
                         user.save
-                        str={"name"=>name,"success"=>200}
+                        str={"name"=>name,"status"=>200}
 		else
-			 str={"fail"=>"name is used"}
+			 str={"status"=>100}
 		end
 		render:json=>str
+	end
+	
+	def addnotice
+
+		 title=params[:title]
+                 content=params[:content]
+		 msg=Notice.new
+		 msg.title=title
+		 msg.content=content
+		 msg.save
+	 	str={"status"=>200}
+		render:json=>str
+	end
+	
+	def getnotice
+		msg=Notice.all
+		content=[]
+		for i in msg do
+			str={"title"=>i.title,"content"=>i.content,"id"=>i.id}
+			content<<str
+		end
+		render:json=>content
+	end
+
+	def rmnotice
+		id=params[:id].to_i
+		Notice.delete(id)
+		str={"status"=>200}
+		render:json=>str
+	end
+	
+	def uploadnotice
+		id=params[:id].to_i
+		title=params[:title]
+                content=params[:content]
+		msg=Notice.find(id)
+		msg.title=title
+		msg.content=content
+		msg.save
+		str={"status"=>200}
+                render:json=>str
 	end
 end

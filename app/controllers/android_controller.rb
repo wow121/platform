@@ -9,10 +9,18 @@ class AndroidController < ApplicationController
 		if(m==nil)
 			str={"status"=>100}
 		else
-			str={"token"=>m.token,"success"=>200}
+			str={"token"=>m.token,"status"=>200}
 		end
 		render:json=>str
 	end
 		
-
+	def getnotice
+                msg=Notice.all
+                content=[]
+                for i in msg do
+                        str={"title"=>i.title,"content"=>i.content,"id"=>i.id}
+                        content<<str
+                end
+                render:json=>content
+        end
 end

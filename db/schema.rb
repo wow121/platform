@@ -34,7 +34,6 @@ ActiveRecord::Schema.define(version: 20140115021918) do
     t.string   "number"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "zxcv"
     t.string   "specialized"
   end
 
@@ -46,7 +45,6 @@ ActiveRecord::Schema.define(version: 20140115021918) do
     t.string   "location"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "test"
   end
 
   create_table "students", force: true do |t|
