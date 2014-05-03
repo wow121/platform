@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140115021918) do
+ActiveRecord::Schema.define(version: 20140427121742) do
 
   create_table "myclasses", force: true do |t|
     t.string   "name"
@@ -25,6 +25,16 @@ ActiveRecord::Schema.define(version: 20140115021918) do
   create_table "notices", force: true do |t|
     t.string   "title"
     t.text     "content"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "products", force: true do |t|
+    t.string   "name"
+    t.string   "sku"
+    t.string   "sname"
+    t.string   "description"
+    t.string   "pic"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -56,6 +66,8 @@ ActiveRecord::Schema.define(version: 20140115021918) do
     t.string   "myclass"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "sex"
+    t.string   "major"
   end
 
 end
