@@ -47,4 +47,39 @@ class AndroidController < ApplicationController
 		end
 		render:json=>str
     end
+
+    def getscore
+    	token=params[:token]
+    	user=Student.where("token"=>token).first
+    	score=Score.where("name"=>user.name)
+    	content=[]
+    	for i in score do
+    		str={"specialized"=>i.specialized,"score"=>i.score}
+    		content<<str
+    	end
+    	render:json=>content
+    end
+
+    def getsyllabus
+    	token=params[:token]
+    	user=Student.where("token"=>token).first
+    	myclass=Myclass.where("name"=>user.myclass).first
+    	syllabus=myclass.curriculum.split(/,/)
+    	content=[]
+    	for i in syllabus do
+    		specialized=Specialized.find(i.to_i)
+    		str={"name"=>specialized.name,"teacher"=>specialized.teacher,"period"=>specialized.period,"location"=>specialized.location,"time"=>specialized.time}
+    		content<<str
+    	end
+    	render:json=>content
+    end
+
+    def setfeedback
+        token=params[:token]
+        content=params[:content]
+        user=Student.where("token"=>token).first
+        Feedback.create({"number"=>user.number,"content"=>content})
+        str={"status"=>200}
+        render:json=>str
+    end
 end

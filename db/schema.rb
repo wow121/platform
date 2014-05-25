@@ -11,7 +11,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140427121742) do
+ActiveRecord::Schema.define(version: 20140512112146) do
+
+  create_table "feedbacks", force: true do |t|
+    t.string   "number"
+    t.text     "content"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "myclasses", force: true do |t|
     t.string   "name"
@@ -20,6 +27,7 @@ ActiveRecord::Schema.define(version: 20140427121742) do
     t.string   "grade"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "curriculum"
   end
 
   create_table "notices", force: true do |t|
@@ -45,6 +53,7 @@ ActiveRecord::Schema.define(version: 20140427121742) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "specialized"
+    t.string   "score"
   end
 
   create_table "specializeds", force: true do |t|
@@ -55,6 +64,7 @@ ActiveRecord::Schema.define(version: 20140427121742) do
     t.string   "location"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "time"
   end
 
   create_table "students", force: true do |t|
